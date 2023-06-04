@@ -1,0 +1,26 @@
+# Activa RewriteRewriteEngine
+# Options +FollowSymLinks 
+RewriteEngine On
+
+# Reescribir la URL solicitada por el usuario
+RewriteRule ^home$      ./index.php
+RewriteRule ^peliculas$  ./peliculas.php
+RewriteRule ^personajes$ ./personajes.php
+RewriteRule ^sagas$ ./sagas.php
+RewriteRule ^error404$ ./404.php
+
+# Enlaces pesonalizados
+RewriteRule ^peliculas/ficha/([a-zA-Z0-9_-]+)$  ./fichaPelicula.php?s=$1
+RewriteRule ^personajes/ficha/([a-zA-Z0-9_-]+)$  ./fichaPersonaje.php?s=$1
+RewriteRule ^sagas/ficha/([a-zA-Z0-9_-]+)$  ./fichaSaga.php?s=$1
+
+# Reescribir si tiene 2 o más "%20" o "+"
+RewriteRule "^([^+ ]*)[+ ](.*)" $1-$2 [R,L]
+
+# Configurar la página 404. La url depende del domino que se tenga
+ErrorDocument 404 ***/fichas_Peliculas_2/error404
+
+    
+
+
+
